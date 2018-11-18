@@ -249,10 +249,10 @@ function notify() {
 
     # Process the log and escape double quotes and backslashes; assuming commit names/messages don't have five of the following: & ; @
     log_out=$( git log --pretty=format:"&&&&&%cN;;;;;${formattedurl}${commitformat}@@@@@" $countarg ${start}..${end} \
+        | perl -p -e 's/@@@@@\n+/@@@@@/mg' \
         | sed -e 's/\\/\\\\/g' \
         | sed -e 's/"/\\"/g' \
-        | sed -e 's/&&&&&\(.*\);;;;;/{ \"fallback\" : \"\", \"color\" : \"good\", \"fields\" : [{"title":"\1","value":"/g' \
-        | perl -p -e 's/@@@@@\n+/@@@@@/mg' \
+        | perl -p -e 's/&&&&&(.*?);;;;;/{ \"fallback\" : \"\", \"color\" : \"good\", \"fields\" : [{"title":"\1","value":"/g' \
         | sed -e 's/@@@@@/","short":false},]},/g' \
         | sed -e 's/,\]/]/' )
 

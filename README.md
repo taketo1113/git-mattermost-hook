@@ -1,5 +1,7 @@
 # Git post-receive hook for Mattermost
 
+(Based on https://github.com/chriseldredge/git-slack-hook)
+
 This is a bash script that posts a message into your [Mattermost](https://www.mattermost.org) channel when changes are pushed.
 
 Hook this script into `post-receive` for your git repositories.

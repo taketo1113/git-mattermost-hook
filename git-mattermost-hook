@@ -254,7 +254,7 @@ function notify() {
         | sed -e 's/"/\\"/g' \
         | perl -p -e 's/&&&&&(.*?);;;;;/{ \"fallback\" : \"\", \"color\" : \"good\", \"fields\" : [{"title":"\1","value":"/g' \
         | sed -e 's/@@@@@/","short":false},]},/g' \
-        | sed -e 's/,\]/]/' )
+        | sed -e 's/\},\]\},/\}\]\},/g' )
 
     attachments="[${log_out%?}]"
 
